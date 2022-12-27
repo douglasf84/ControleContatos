@@ -15,7 +15,6 @@ $(document).ready(function () {
             url: '/Usuario/ListarContatosPorUsuarioId/' + usuarioId,
             success: function (result) {
                 $("#listaContatosUsuario").html(result);
-                //$('#modalContatosUsuario1').modal().show();
                 getDatatable('#table-contatos-usuario');
             }
         });
