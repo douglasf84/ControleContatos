@@ -21,8 +21,11 @@ namespace ControleContatos
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>(); //sempre que chamar a interface ele irá acionar a classe que herda a Interface
+            builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>(); 
+            //sempre que chamar a interface ele irá acionar a classe que herda a Interface
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+            builder.Services.AddScoped<IFotosProdutoRepositorio, FotosProdutoRepositorio>();
 
             builder.Services.AddScoped<ISessao, Sessao>();
 

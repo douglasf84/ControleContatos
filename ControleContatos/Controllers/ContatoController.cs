@@ -66,7 +66,6 @@ namespace ControleContatos.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos Cadastrar seu contato, tente novamente! Detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-
         }
 
         [HttpGet]

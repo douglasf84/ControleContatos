@@ -11,6 +11,8 @@ namespace ControleContatos.Data
         }
         public DbSet<ContatoModel> Contatos { get; set; }
         public DbSet<UsuarioModel> Usuarios { get; set; }
+        public DbSet<ProdutoModel> Produtos { get; set; }
+        public DbSet<FotosProdutoModel> FotosProduto { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

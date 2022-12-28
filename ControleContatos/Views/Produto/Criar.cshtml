@@ -1,0 +1,59 @@
+﻿@model ProdutoModel
+
+@{
+    ViewData["Title"] = "Adicionar Novo Produto";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Produto</h1>
+</div>
+
+<form class="row g-3" method="post" asp-controller="Produto" asp-action="Criar">
+
+    <input type="hidden" asp-for="UsuarioId" />
+
+    <div class="col-12">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" asp-for="Nome" placeholder="Digite o Nome do Produto">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="col-12">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" asp-for="Descricao" placeholder="Digite a Descrição do Produto">
+        @Html.ValidationMessageFor(x => x.Descricao)
+    </div>
+
+    <div class="col-md-4">
+        <label for="estoque">Estoque</label>
+        <input type="text" class="form-control" asp-for="Estoque" placeholder="Digite o Estoque do Produto">
+        @Html.ValidationMessageFor(x => x.Estoque)
+    </div>
+    <div class="col-md-4">
+        <label for="estoqueMinimo">Estoque Minimo</label>
+        <input type="text" class="form-control" asp-for="EstoqueMinimo" placeholder="Digite o Estoque Minimo do Produto">
+        @Html.ValidationMessageFor(x => x.EstoqueMinimo)
+    </div>
+
+    <div class="col-md-4">
+        <label for="preco">Preço</label>
+        <input type="text" class="form-control" asp-for="Preco" placeholder="Digite o Preço do Produto">
+        @Html.ValidationMessageFor(x => x.Preco)
+    </div>
+
+    <div class="col-6">
+        <label for="categoria">Categoria</label>
+        <input type="text" class="form-control" asp-for="Categoria" placeholder="Digite a Categoria do Produto">
+        @Html.ValidationMessageFor(x => x.Categoria)
+    </div>
+    <div class="col-6">
+        <label for="preco">Marca</label>
+        <input type="text" class="form-control" asp-for="Marca" placeholder="Digite a Marca do Produto">
+        @Html.ValidationMessageFor(x => x.Marca)
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+        <a class="btn btn-secondary btn-block" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+    </div>
+</form>

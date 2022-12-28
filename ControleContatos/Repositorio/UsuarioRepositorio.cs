@@ -16,6 +16,7 @@ namespace ControleUsuarios.Repositorio
         public List<UsuarioModel> BuscarTodos()
         {
             return _context.Usuarios
+                .Where(x => x.Excluido == false)
                 .Include(x => x.Contatos)
                 .ToList();
         }
@@ -59,6 +60,7 @@ namespace ControleUsuarios.Repositorio
 
             if (usuarioModel == null) throw new Exception("Houve um erro na Exclusão do Usuario.");
 
+            usuarioModel.Excluido = true;
             _context.Usuarios.Remove(usuarioModel);
             _context.SaveChanges();
 
@@ -95,7 +97,6 @@ namespace ControleUsuarios.Repositorio
             _context.SaveChanges();
 
             return usuarioDb;
-
         }
     }
 }

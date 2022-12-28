@@ -6,6 +6,8 @@
 $(document).ready(function () {
     getDatatable('#table-contatos');
     getDatatable('#table-usuarios');
+    getDatatable('#table-produtos');
+    getDatatable('#table-fotos-produtos');
 
     $('.btn-total-contatos').click(function () {
         var usuarioId = $(this).attr('usuario-id');
@@ -16,6 +18,19 @@ $(document).ready(function () {
             success: function (result) {
                 $("#listaContatosUsuario").html(result);
                 getDatatable('#table-contatos-usuario');
+            }
+        });
+    });
+
+    $('.btn-modal-imagem').click(function () {
+        var produtoId = $(this).attr('produto-id');
+
+        $.ajax({
+            type: 'GET',
+            url: '/Produto/ListarFotosProdutosPorId/' + produtoId,
+            success: function (result) {
+                $("#listaFotosProduto").html(result);
+                getDatatable('#table-fotos-produtos');
             }
         });
     });

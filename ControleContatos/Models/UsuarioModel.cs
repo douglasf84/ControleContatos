@@ -5,9 +5,8 @@ using System.Diagnostics;
 
 namespace ControleContatos.Models
 {
-    public class UsuarioModel
-    {
-        public int Id { get; set; }
+    public class UsuarioModel : DefaultModel
+    {        
 
         [Required(ErrorMessage ="Digite o Nome do usuário")]
         public string Nome { get; set; }
@@ -23,12 +22,11 @@ namespace ControleContatos.Models
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Selecione o perfil do usuário")]
-        public PerfilEnum? Perfil { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-        public DateTime? DataAlteracao { get; set; }
+        public PerfilEnum? Perfil { get; set; }     
 
         public virtual List<ContatoModel> Contatos { get; set; }
+
+        public virtual List<ProdutoModel> Produtos { get; set; }
 
         //verifica se a senha está correta
         public bool SenhaValida(string senha)

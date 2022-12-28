@@ -4,6 +4,7 @@ using ControleContatos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleContatos.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20221227203720_Inserir coluna excluido nas tabelas")]
+    partial class Inserircolunaexcluidonastabelas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,31 +62,6 @@ namespace ControleContatos.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Contatos");
-                });
-
-            modelBuilder.Entity("ControleContatos.Models.FotosProduto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagemUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("FotosProduto");
                 });
 
             modelBuilder.Entity("ControleContatos.Models.ProdutoModel", b =>
@@ -188,17 +166,6 @@ namespace ControleContatos.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("ControleContatos.Models.FotosProduto", b =>
-                {
-                    b.HasOne("ControleContatos.Models.ProdutoModel", "Produto")
-                        .WithMany("FotosProduto")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
-                });
-
             modelBuilder.Entity("ControleContatos.Models.ProdutoModel", b =>
                 {
                     b.HasOne("ControleContatos.Models.UsuarioModel", "Usuario")
@@ -206,11 +173,6 @@ namespace ControleContatos.Migrations
                         .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("ControleContatos.Models.ProdutoModel", b =>
-                {
-                    b.Navigation("FotosProduto");
                 });
 
             modelBuilder.Entity("ControleContatos.Models.UsuarioModel", b =>

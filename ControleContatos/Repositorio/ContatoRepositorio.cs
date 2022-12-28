@@ -46,7 +46,9 @@ namespace ControleContatos.Repositorio
 
             if (contatoModel == null) throw new Exception("Houve um erro na Exclusão do contato.");
 
-            _bancoContext.Contatos.Remove(contatoModel);
+            contatoModel.Excluido = true;
+
+            _bancoContext.Contatos.Update(contatoModel);
             _bancoContext.SaveChanges();
 
             return true;
@@ -54,7 +56,9 @@ namespace ControleContatos.Repositorio
 
         public List<ContatoModel> BuscarTodos()
         {
-            return _bancoContext.Contatos.ToList();
+            return _bancoContext.Contatos
+                .Where(x => x.Excluido == false)
+                .ToList();
         }
 
         public List<ContatoModel> BuscarTodosPorUsuarioLogado(int usuarioId)
