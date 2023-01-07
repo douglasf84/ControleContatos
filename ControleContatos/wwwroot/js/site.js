@@ -8,6 +8,7 @@ $(document).ready(function () {
     getDatatable('#table-usuarios');
     getDatatable('#table-produtos');
     getDatatable('#table-fotos-produtos');
+    
 
     $('.btn-total-contatos').click(function () {
         var usuarioId = $(this).attr('usuario-id');
@@ -23,11 +24,36 @@ $(document).ready(function () {
     });
 
     $('.btn-modal-imagem').click(function () {
-        var produtoId = $(this).attr('produto-id');
+        var produtoId = $(this).attr('produto-id');       
 
         $.ajax({
             type: 'GET',
             url: '/Produto/ListarFotosProdutosPorId/' + produtoId,
+            success: function (result) {
+                $("#listaFotosProduto").html(result);
+                getDatatable('#table-fotos-produtos');
+                document.getElementById(produtoId);
+            }
+        });
+    });
+
+    $('.btn-adicionar-imagem').click(function () {
+        var produtoId = $(this).attr('produto-id');           
+        //event.preventDefault() faz com que a tela nao seja atualizada totalmente
+        // “<%=request.getSession().getAttribute('sessaoProduto')%>”
+
+        var fotoProduto = {
+            produtoId: "<%=request.getSession().getAttribute('sessaoProduto') %>",
+            descricao: document.getElementById("descricao").value,
+            imagemUrl: document.getElementById("imagemUrl").value
+        }
+
+        event.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Produto/AdicionarFoto/',
+            data: fotoProduto,
             success: function (result) {
                 $("#listaFotosProduto").html(result);
                 getDatatable('#table-fotos-produtos');
@@ -83,3 +109,8 @@ $(document).ready(function () {
         });
     }, 5000);
 });
+
+function getSessionProdutoId() {
+    var name = '<%=session.getAttribute("produtoId")%>';
+    alert(name);
+};

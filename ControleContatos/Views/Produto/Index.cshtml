@@ -1,4 +1,5 @@
 ﻿@model List<ProdutoModel>
+
 @{
     ViewData["Title"] = "Listagem de Contatos";
 }
@@ -54,10 +55,8 @@
                         <td>@produto.Categoria</td>
                         <td>@produto.ValorEstoque()</td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <button type="button" produto-id="@produto.Id" asp-route-id="@produto.Id" class="btn btn-info btn-modal-imagem" data-bs-toggle="modal" data-bs-target="#modalFotoProduto">
-                                    Fotos
-                                </button>
+                            <div class="btn-group" role="group">                               
+                                <button type="button" produto-id="@produto.Id" class="btn btn-primary btn-modal-imagem" data-bs-toggle="modal" data-bs-target="#modalFotoProduto"> Fotos</button>
                                 <a role="button" class="btn btn-primary" asp-route-id="@produto.Id" asp-controller="Produto" asp-action="Editar">Editar</a>
                                 <a role="button" class="btn btn-danger" asp-route-id="@produto.Id" asp-controller="Produto" asp-action="ApagarConfirmacao">Apagar</a>
                             </div>
@@ -80,14 +79,15 @@
                 <div class="modal-body">
 
                     <div class="col-12">
+
                         <label for="descricao">Descrição</label>
-                        <input type="text" class="form-control" id="descricao" placeholder="Digite a Descrição do Produto">
+                        <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite a Descrição do Produto">
                     </div>
 
                     <br />
 
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="imagemUrl">
+                        <input type="file" class="form-control" name="imagemUrl" id="imagemUrl">
                         <label class="input-group-text" for="imagemUrl">Carregar</label>
                     </div>
                     <br />
@@ -95,6 +95,7 @@
                     <button type="button" class="btn btn-dark btn-adicionar-imagem">Adicionar</button>
 
                     <hr />
+
                     <div id="listaFotosProduto"></div>
                 </div>
             </div>

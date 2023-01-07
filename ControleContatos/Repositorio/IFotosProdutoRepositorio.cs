@@ -6,7 +6,7 @@ namespace ControleContatos.Repositorio
     {
         List<FotosProdutoModel> BuscarFotosPorIdProduto(int id);
 
-        ProdutoModel Adicionar(FotosProdutoModel fotosProduto);
+        FotosProdutoModel Adicionar(FotosProdutoModel fotosProduto);
       
         bool Excluir(int id);
 

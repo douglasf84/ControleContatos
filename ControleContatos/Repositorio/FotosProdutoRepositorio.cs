@@ -13,9 +13,11 @@ namespace ControleContatos.Repositorio
             _bancoContext = bancoContext;
         }
 
-        public ProdutoModel Adicionar(FotosProdutoModel fotosProduto)
+        public FotosProdutoModel Adicionar(FotosProdutoModel fotosProduto)
         {
-            throw new NotImplementedException();
+            _bancoContext.FotosProduto.Add(fotosProduto);
+            _bancoContext.SaveChanges();
+            return fotosProduto;
         }
 
         public List<FotosProdutoModel> BuscarFotosPorIdProduto(int id)
