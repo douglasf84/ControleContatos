@@ -17,6 +17,8 @@ namespace ControleContatos.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContatoMap());
+            modelBuilder.ApplyConfiguration(new ProdutoMap());
+            modelBuilder.ApplyConfiguration(new FotosProdutoMap());
 
             base.OnModelCreating(modelBuilder);
         }
